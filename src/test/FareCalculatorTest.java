@@ -47,7 +47,7 @@ public class FareCalculatorTest {
                                 new Tap(1L, LocalDateTime.of(2023, 1, 1, 10, 0), TapType.ON, StopId.Stop1, "company1", "bus1", "pan1"),
                                 new Tap(2L, LocalDateTime.of(2023, 1, 1, 10, 5), TapType.OFF, StopId.Stop2, "company1", "bus1", "pan1")
                         ),
-                        TripStatus.COMPLETE,
+                        TripStatus.COMPLETED,
                         new BigDecimal("3.25"),
                         StopId.Stop1,
                         StopId.Stop2,
@@ -58,7 +58,7 @@ public class FareCalculatorTest {
                                 new Tap(3L, LocalDateTime.of(2023, 1, 1, 11, 0), TapType.ON, StopId.Stop2, "company1", "bus1", "pan2"),
                                 new Tap(4L, LocalDateTime.of(2023, 1, 1, 11, 10), TapType.OFF, StopId.Stop3, "company1", "bus1", "pan2")
                         ),
-                        TripStatus.COMPLETE,
+                        TripStatus.COMPLETED,
                         new BigDecimal("5.50"),
                         StopId.Stop2,
                         StopId.Stop3,
@@ -69,7 +69,7 @@ public class FareCalculatorTest {
                                 new Tap(5L, LocalDateTime.of(2023, 1, 1, 12, 0), TapType.ON, StopId.Stop3, "company1", "bus1", "pan3"),
                                 new Tap(6L, LocalDateTime.of(2023, 1, 1, 12, 20), TapType.OFF, StopId.Stop1, "company1", "bus1", "pan3")
                         ),
-                        TripStatus.COMPLETE,
+                        TripStatus.COMPLETED,
                         new BigDecimal("7.30"),
                         StopId.Stop3,
                         StopId.Stop1,

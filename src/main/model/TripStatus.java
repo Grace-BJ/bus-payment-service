@@ -1,7 +1,7 @@
 package main.model;
 
 public enum TripStatus {
-    COMPLETE,
+    COMPLETED,
     INCOMPLETE,
     CANCELLED
 }
