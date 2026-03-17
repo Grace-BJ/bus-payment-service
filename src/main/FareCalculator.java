@@ -59,7 +59,7 @@ public class FareCalculator {
                     tapOn.companyId(),
                     tapOn.busId(),
                     tapOn.pan(),
-                    TripStatus.COMPLETE
+                    TripStatus.COMPLETED
             ));
         }
 
