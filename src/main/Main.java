@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Main {
 
-    static void main() throws IOException {
+    public static void main() throws IOException {
 
         TapCsvReader tapCsvReader = new TapCsvReader();
         List<Tap> taps = tapCsvReader.readTaps("src/main/resources/taps.csv");
