@@ -32,8 +32,8 @@ public class TripCsvWriterTest {
                 TripStatus.COMPLETED
         );
 
-        Path output = Files.createTempFile("trips", ".csv");
-        new TripCsvWriter().writeTrips("src/test/resources/trips.csv", List.of(trip));
+        Path output = Path.of("src/test/resources/trips.csv");
+        new TripCsvWriter().writeTrips(output.toString(), List.of(trip));
         List<String> lines = Files.readAllLines(output);
         assertEquals("Started,Finished,DurationSecs,FromStopId,ToStopId,ChargeAmount,CompanyId,BusID,PAN,Status", lines.get(0));
         assertEquals("22-01-2018 13:00:00,22-01-2018 13:05:00,300,Stop1,Stop2,$3.25,Company1,Bus37,5500005555555559,COMPLETED", lines.get(1));

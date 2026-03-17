@@ -1,6 +1,7 @@
 package main;
 
 import main.model.Tap;
+import main.model.TapPair;
 import main.model.Trip;
 
 import java.io.IOException;
@@ -13,8 +14,11 @@ public class Main {
         TapCsvReader tapCsvReader = new TapCsvReader();
         List<Tap> taps = tapCsvReader.readTaps("src/test/resources/taps.csv");
 
-        TripProcessor tripProcessor = new TripProcessor();
-        List<Trip> processedTrips = tripProcessor.process(taps);
+        TapMatcher tapMatcher = new TapMatcher();
+        List<TapPair> tapPairs = tapMatcher.matchTaps(taps);
+
+        FareCalculator fareCalculator = new FareCalculator();
+        List<Trip> processedTrips = fareCalculator.calculateFare(tapPairs);
 
         TripCsvWriter tripCsvWriter = new TripCsvWriter();
         tripCsvWriter.writeTrips("src/test/resources/trips.csv", processedTrips);
