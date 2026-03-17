@@ -1,6 +1,7 @@
 package main;
 
 import main.model.Tap;
+import main.model.Trip;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,6 +15,8 @@ public class Main {
 
 
         TripProcessor tripProcessor = new TripProcessor();
-        tripProcessor.process(taps);
+        List<Trip> processedTrips = tripProcessor.process(taps);
+
+
     }
 }
