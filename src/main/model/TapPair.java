@@ -13,38 +13,25 @@ public class TapPair {
         return this.tapOn != null && this.tapOff != null;
     }
 
-    public boolean isIncompleteOn() {
-        return this.tapOn != null && this.tapOff == null;
-    }
-
-    public boolean isIncompleteOff() {
-        return this.tapOn == null && this.tapOff != null;
-    }
-
     public TapStatus getStatus() {
         if (isComplete()) {
             return TapStatus.COMPLETE;
-        } else if (isIncompleteOn()) {
-            return TapStatus.INCOMPLETE_ON;
         } else {
-            return TapStatus.INCOMPLETE_OFF;
+            return TapStatus.INCOMPLETE;
         }
     }
 
+    public Tap getTapOn() {
+        return tapOn;
+    }
 
-    @Override
-    public String toString() {
-        return "TapPair{" +
-                "tapOn=" + tapOn.toString() +
-                ", tapOff=" + tapOff.toString() +
-                '}';
+    public Tap getTapOff() {
+        return tapOff;
     }
 
     public enum TapStatus {
         COMPLETE,
-        INCOMPLETE_ON,
-        INCOMPLETE_OFF
+        INCOMPLETE,
     }
 
-    // Optional: calculate duration, fare, etc.
 }

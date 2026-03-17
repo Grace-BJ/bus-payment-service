@@ -38,6 +38,10 @@ public class Tap {
         return stopId;
     }
 
+    public String getCompanyId() {
+        return companyId;
+    }
+
     public String getBusId() {
         return busId;
     }
