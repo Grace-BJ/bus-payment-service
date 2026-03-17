@@ -1,7 +1,4 @@
-package main;
-
-import main.model.StopId;
-import main.model.TapType;
+package main.model;
 
 import java.time.LocalDateTime;
 
@@ -41,10 +38,6 @@ public class Tap {
         return stopId;
     }
 
-    public String getCompanyId() {
-        return companyId;
-    }
-
     public String getBusId() {
         return busId;
     }
@@ -52,4 +45,18 @@ public class Tap {
     public String getPan() {
         return pan;
     }
+
+    @Override
+    public String toString() {
+        return "Tap{" +
+                "id=" + id +
+                ", dateTime=" + dateTime +
+                ", tapType=" + tapType +
+                ", stopId=" + stopId +
+                ", companyId='" + companyId + '\'' +
+                ", busId='" + busId + '\'' +
+                ", pan='" + pan + '\'' +
+                '}';
+    }
+
 }

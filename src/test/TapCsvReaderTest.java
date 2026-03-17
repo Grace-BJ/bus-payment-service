@@ -1,6 +1,6 @@
 package test;
 
-import main.Tap;
+import main.model.Tap;
 import main.TapCsvReader;
 import main.model.TapType;
 import org.junit.jupiter.api.Test;

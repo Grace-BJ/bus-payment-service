@@ -1,13 +1,19 @@
 package main;
 
-import main.model.StopId;
-import main.model.TapType;
+import main.model.Tap;
 
-import java.time.LocalDateTime;
+import java.io.IOException;
+import java.util.List;
 
 public class Main {
 
-    static void main() {
-        Tap tap = new Tap(1L, LocalDateTime.now(), TapType.ON, StopId.Stop1, "company1", "bus1", "pan1");
+    static void main() throws IOException {
+
+        TapCsvReader tapCsvReader = new TapCsvReader();
+        List<Tap> taps = tapCsvReader.readTaps("src/test/resources/taps.csv");
+
+
+        TripProcessor tripProcessor = new TripProcessor();
+        tripProcessor.process(taps);
     }
 }

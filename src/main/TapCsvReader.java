@@ -1,6 +1,7 @@
 package main;
 
 import main.model.StopId;
+import main.model.Tap;
 import main.model.TapType;
 
 import java.io.BufferedReader;
