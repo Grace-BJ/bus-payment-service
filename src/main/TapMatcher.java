@@ -8,20 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class TripProcessor {
+public class TapMatcher {
 
-    public List<Trip> process(List<Tap> taps) {
-
-        // match taps on and off to create pairs
-        List<TapPair> tapPairs = matchTaps(taps);
-
-        // calculate fare for pairs
-        FareCalculator fareCalculator = new FareCalculator();
-        return fareCalculator.calculateFare(tapPairs);
-
-    }
-
-    public static List<TapPair> matchTaps(List<Tap> taps) {
+    public List<TapPair> matchTaps(List<Tap> taps) {
         // Group by account + bus
         Map<AccountBusKey, List<Tap>> grouped = taps.stream()
                 .collect(Collectors.groupingBy(t -> new AccountBusKey(t.pan(), t.busId())));

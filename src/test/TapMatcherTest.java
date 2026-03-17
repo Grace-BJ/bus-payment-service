@@ -1,6 +1,6 @@
 package test;
 
-import main.TripProcessor;
+import main.TapMatcher;
 import main.model.StopId;
 import main.model.Tap;
 import main.model.TapPair;
@@ -16,14 +16,13 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.of;
 
-public class TripProcessorTest {
+public class TapMatcherTest {
 
     @ParameterizedTest
     @MethodSource("matchTapsCases")
     void matchTapsShouldCreateExpectedPairs(List<Tap> taps, List<TapPair.TapStatus> expectedOutcome) {
-        List<TapPair.TapStatus> actualOutcome =
-                TripProcessor.matchTaps(taps).stream().map(TapPair::getStatus).toList();
-
+        TapMatcher tapMatcher = new TapMatcher();
+        List<TapPair.TapStatus> actualOutcome = tapMatcher.matchTaps(taps).stream().map(TapPair::getStatus).toList();
         assertEquals(expectedOutcome, actualOutcome);
     }
 
