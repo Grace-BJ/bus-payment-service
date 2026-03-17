@@ -20,31 +20,22 @@ public class TapCsvReaderTest {
         System.out.println(taps.toString());
         assertEquals(6, taps.size());
 
+        assertEquals(List.of(1L, 2L, 3L, 4L, 5L, 6L), taps.stream().map(Tap::getId).toList());
 
-        List<Long> ids = taps.stream().map(Tap::getId).toList();
-        assertEquals(
-                List.of(1L, 2L, 3L, 4L, 5L, 6L),
-                ids
-        );
-
-        List<TapType> tapTypes = taps.stream().map(Tap::getTapType).toList();
         assertEquals(
                 List.of(TapType.ON, TapType.OFF, TapType.ON, TapType.ON, TapType.OFF, TapType.OFF),
-                tapTypes
+                taps.stream().map(Tap::getTapType).toList()
         );
 
-        List<String> busIds = taps.stream().map(Tap::getBusId).toList();
         assertEquals(
                 List.of("Bus37", "Bus37", "Bus36", "Bus37", "Bus37", "Bus37"),
-                busIds
+                taps.stream().map(Tap::getBusId).toList()
         );
 
-        Tap firstTap = taps.stream().findFirst().orElseThrow();
-        assertEquals(1L, firstTap.getId());
-        assertEquals(LocalDateTime.of(2023, 1, 22, 13, 0, 0), firstTap.getDateTime());
+        assertEquals(1L, taps.getFirst().getId());
+        assertEquals(LocalDateTime.of(2023, 1, 22, 13, 0, 0), taps.getFirst().getDateTime());
 
-        Tap lastTap = taps.stream().reduce((first, second) -> second).orElseThrow();
-        assertEquals(6L, lastTap.getId());
-        assertEquals(LocalDateTime.of(2023, 1, 24, 16, 30, 0), lastTap.getDateTime());
+        assertEquals(6L, taps.getLast().getId());
+        assertEquals(LocalDateTime.of(2023, 1, 24, 16, 30, 0), taps.getLast().getDateTime());
     }
 }
