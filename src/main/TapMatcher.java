@@ -19,25 +19,22 @@ public class TapMatcher {
 
         for (List<Tap> tapsForGroup : grouped.values()) {
             tapsForGroup.sort(Comparator.comparing(Tap::dateTime));
-
             Tap currentOn = null;
             for (Tap tap : tapsForGroup) {
                 if (tap.tapType() == TapType.ON) {
-                    if (currentOn != null) pairs.add(new TapPair(currentOn, null));
-                    currentOn = tap;
-                } else {
                     if (currentOn != null) {
-                        pairs.add(new TapPair(currentOn, tap));
-                        currentOn = null;
-                    } else {
-                        pairs.add(new TapPair(null, tap));
+                        pairs.add(new TapPair(currentOn, null));
                     }
+                    currentOn = tap;
+                } else if (currentOn != null) {
+                    pairs.add(new TapPair(currentOn, tap));
+                    currentOn = null;
                 }
             }
-
-            if (currentOn != null) pairs.add(new TapPair(currentOn, null));
+            if (currentOn != null) {
+                pairs.add(new TapPair(currentOn, null));
+            }
         }
-
         return pairs;
     }
 }

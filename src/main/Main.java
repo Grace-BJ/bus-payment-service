@@ -12,8 +12,9 @@ public class Main {
     static void main() throws IOException {
 
         TapCsvReader tapCsvReader = new TapCsvReader();
-        List<Tap> taps = tapCsvReader.readTaps("src/test/resources/taps.csv");
+        List<Tap> taps = tapCsvReader.readTaps("src/main/resources/taps.csv");
 
+        // todo should these be static
         TapMatcher tapMatcher = new TapMatcher();
         List<TapPair> tapPairs = tapMatcher.matchTaps(taps);
 
@@ -21,7 +22,7 @@ public class Main {
         List<Trip> processedTrips = fareCalculator.calculateFare(tapPairs);
 
         TripCsvWriter tripCsvWriter = new TripCsvWriter();
-        tripCsvWriter.writeTrips("src/test/resources/trips.csv", processedTrips);
+        tripCsvWriter.writeTrips("src/main/resources/trips.csv", processedTrips);
 
     }
 }
