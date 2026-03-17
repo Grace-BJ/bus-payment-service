@@ -18,7 +18,6 @@ import static org.junit.jupiter.params.provider.Arguments.of;
 
 public class TripProcessorTest {
 
-
     @ParameterizedTest
     @MethodSource("matchTapsCases")
     void matchTapsShouldCreateExpectedPairs(List<Tap> taps, List<TapPair.TapStatus> expectedOutcome) {
@@ -41,13 +40,13 @@ public class TripProcessorTest {
                         List.of(
                                 new Tap(3L, LocalDateTime.of(2023, 1, 1, 11, 0), TapType.ON, StopId.Stop1, "company1", "bus1", "pan2")
                         ),
-                        List.of(TapPair.TapStatus.INCOMPLETE_ON)
+                        List.of(TapPair.TapStatus.INCOMPLETE)
                 ),
                 of(
                         List.of(
                                 new Tap(4L, LocalDateTime.of(2023, 1, 1, 12, 0), TapType.OFF, StopId.Stop2, "company1", "bus1", "pan3")
                         ),
-                        List.of(TapPair.TapStatus.INCOMPLETE_OFF)
+                        List.of(TapPair.TapStatus.INCOMPLETE)
                 ),
                 of(
                         List.of(
@@ -56,7 +55,7 @@ public class TripProcessorTest {
                                 new Tap(7L, LocalDateTime.of(2023, 1, 1, 13, 10), TapType.OFF, StopId.Stop3, "company1", "bus1", "pan4")
                         ),
                         List.of(
-                                TapPair.TapStatus.INCOMPLETE_ON,
+                                TapPair.TapStatus.INCOMPLETE,
                                 TapPair.TapStatus.COMPLETE
                         )
                 ),
@@ -66,10 +65,11 @@ public class TripProcessorTest {
                                 new Tap(9L, LocalDateTime.of(2023, 1, 1, 14, 5), TapType.ON, StopId.Stop2, "company1", "bus1", "pan5")
                         ),
                         List.of(
-                                TapPair.TapStatus.INCOMPLETE_OFF,
-                                TapPair.TapStatus.INCOMPLETE_ON
+                                TapPair.TapStatus.INCOMPLETE,
+                                TapPair.TapStatus.INCOMPLETE
                         )
                 )
         );
     }
 }
+
