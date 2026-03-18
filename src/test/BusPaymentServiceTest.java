@@ -55,7 +55,6 @@ public class BusPaymentServiceTest {
                 ).sorted().toList(),
                 actualTripLines
         );
-        //todo validate the data for incomplete
 
         // this test covers a large range of edge cases
         // complete trip (stop 1 -> stop 2)
