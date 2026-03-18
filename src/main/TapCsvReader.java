@@ -29,6 +29,8 @@ public class TapCsvReader {
 
                 String[] parts = line.split(",");
 
+                // here we are assuming that the CSV file is well formatted and is not missing data
+                // we will not perform any validation on the data
                 Long id = Long.parseLong(parts[0].trim());
                 LocalDateTime dateTime = LocalDateTime.parse(parts[1].trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
                 TapType tapType = TapType.valueOf(parts[2].trim());

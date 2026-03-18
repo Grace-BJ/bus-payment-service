@@ -15,7 +15,8 @@ public class BusPaymentServiceTest {
 
     @Test
     void shouldProcessInputCsvAndWriteExpectedTripsCsv() throws IOException {
-        Main.main();
+        // todo maybe extract so this calls a service class
+        Main.main(new String[0]);
 
         Path output = Path.of("src/main/resources/trips.csv");
         List<String> lines = Files.readAllLines(output);
