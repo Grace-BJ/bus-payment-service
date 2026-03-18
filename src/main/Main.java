@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main() throws IOException {
+    static void main() throws IOException {
 
         // here we set the input and output paths for processing bus payment data
         String inputPath = "src/main/resources/taps.csv";

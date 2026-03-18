@@ -10,13 +10,13 @@ import java.util.List;
 public class BusPaymentService {
 
     private final TapCsvReader tapCsvReader = new TapCsvReader();
-    private final TapMatcher tapMatcher = new TapMatcher();
+    private final TapPairingService tapPairingService = new TapPairingService();
     private final TripFactory tripFactory = new TripFactory();
     private final TripCsvWriter tripCsvWriter = new TripCsvWriter();
 
     public void process(String inputPath, String outputPath) throws IOException {
         List<Tap> taps = tapCsvReader.readTaps(inputPath);
-        List<TapPair> tapPairs = tapMatcher.matchTaps(taps);
+        List<TapPair> tapPairs = tapPairingService.pairTaps(taps);
         List<Trip> trips = tripFactory.buildTrips(tapPairs);
         tripCsvWriter.writeTrips(outputPath, trips);
     }

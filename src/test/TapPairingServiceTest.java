@@ -1,6 +1,6 @@
 package test;
 
-import main.TapMatcher;
+import main.TapPairingService;
 import main.model.StopId;
 import main.model.Tap;
 import main.model.TapPair;
@@ -16,17 +16,17 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.of;
 
-public class TapMatcherTest {
+public class TapPairingServiceTest {
 
     @ParameterizedTest
-    @MethodSource("matchTapsCases")
-    void matchTapsShouldCreateExpectedPairs(List<Tap> taps, List<TapPair.TapStatus> expectedOutcome) {
-        TapMatcher tapMatcher = new TapMatcher();
-        List<TapPair.TapStatus> actualOutcome = tapMatcher.matchTaps(taps).stream().map(TapPair::getStatus).toList();
+    @MethodSource("pairTapsCases")
+    void pairTapsShouldCreateExpectedPairs(List<Tap> taps, List<TapPair.TapStatus> expectedOutcome) {
+        TapPairingService tapPairingService = new TapPairingService();
+        List<TapPair.TapStatus> actualOutcome = tapPairingService.pairTaps(taps).stream().map(TapPair::getStatus).toList();
         assertEquals(expectedOutcome, actualOutcome);
     }
 
-    private static Stream<Arguments> matchTapsCases() {
+    private static Stream<Arguments> pairTapsCases() {
         return Stream.of(
                 of(
                         List.of(
@@ -43,7 +43,7 @@ public class TapMatcherTest {
                 ),
                 of(
                         List.of(
-                                new Tap(4L, LocalDateTime.of(2023, 1, 1, 12, 0), TapType.OFF, StopId.Stop2, "company1", "bus1", "pan3")
+                                new Tap(4L, LocalDateTime.of(2023, 1, 1, 12, 0), TapType.ON, StopId.Stop2, "company1", "bus1", "pan3")
                         ),
                         List.of(TapPair.TapStatus.INCOMPLETE)
                 ),
@@ -60,7 +60,7 @@ public class TapMatcherTest {
                 ),
                 of(
                         List.of(
-                                new Tap(8L, LocalDateTime.of(2023, 1, 1, 14, 0), TapType.OFF, StopId.Stop1, "company1", "bus1", "pan5"),
+                                new Tap(8L, LocalDateTime.of(2023, 1, 1, 14, 0), TapType.ON, StopId.Stop1, "company1", "bus1", "pan5"),
                                 new Tap(9L, LocalDateTime.of(2023, 1, 1, 14, 5), TapType.ON, StopId.Stop2, "company1", "bus1", "pan5")
                         ),
                         List.of(
