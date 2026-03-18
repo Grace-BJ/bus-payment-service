@@ -10,11 +10,6 @@ Assumptions
 - The data provided in "taps.csv" is well formatted and is not missing data
 - There is no "Tap Off" only. The first tap will always be considered a "Tap On".
 
-
 Notes
 - In the provided input file there was a "Tap Off" without an accompanying "Tap On". As per the above assumptions
   I have corrected this data to be a "Tap On" only.
-
-
-- Provide a test harness to validate your solution
-- Provide the output file for the example input file
