@@ -46,12 +46,12 @@ public class BusPaymentServiceTest {
                         "01-03-2023 10:20:00,01-03-2023 10:25:00,300,Stop1,Stop1,$0,CompanyZ,Bus17,1000000000000007,CANCELLED",
                         "01-03-2023 10:30:00,01-03-2023 10:40:00,600,Stop2,Stop2,$0,CompanyZ,Bus18,1000000000000008,CANCELLED",
                         "01-03-2023 10:45:00,01-03-2023 10:50:00,300,Stop3,Stop3,$0,CompanyZ,Bus19,1000000000000009,CANCELLED",
-                        "01-03-2023 11:00:00,,0,Stop1,Stop1,$7.30,CompanyZ,Bus20,1000000000000010,INCOMPLETE",
-                        "01-03-2023 11:05:00,,0,Stop2,Stop2,$5.50,CompanyZ,Bus20,1000000000000010,INCOMPLETE",
-                        "01-03-2023 11:15:00,,0,Stop3,Stop3,$7.30,CompanyZ,Bus21,1000000000000011,INCOMPLETE",
-                        "01-03-2023 11:25:00,,0,Stop1,Stop1,$7.30,CompanyZ,Bus22,1000000000000012,INCOMPLETE",
+                        "01-03-2023 11:00:00,,0,Stop1,,$7.30,CompanyZ,Bus20,1000000000000010,INCOMPLETE",
+                        "01-03-2023 11:05:00,,0,Stop2,,$5.50,CompanyZ,Bus20,1000000000000010,INCOMPLETE",
+                        "01-03-2023 11:15:00,,0,Stop3,,$7.30,CompanyZ,Bus21,1000000000000011,INCOMPLETE",
+                        "01-03-2023 11:25:00,,0,Stop1,,$7.30,CompanyZ,Bus22,1000000000000012,INCOMPLETE",
                         "01-03-2023 11:40:00,01-03-2023 11:50:00,600,Stop2,Stop3,$5.50,CompanyZ,Bus24,1000000000000013,COMPLETED",
-                        "01-03-2023 12:00:00,,0,Stop1,Stop1,$7.30,CompanyZ,Bus24,1000000000000013,INCOMPLETE"
+                        "01-03-2023 12:00:00,,0,Stop1,,$7.30,CompanyZ,Bus24,1000000000000013,INCOMPLETE"
                 ).sorted().toList(),
                 actualTripLines
         );

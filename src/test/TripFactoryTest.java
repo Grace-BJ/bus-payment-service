@@ -1,6 +1,6 @@
 package test;
 
-import main.FareCalculator;
+import main.TripFactory;
 import main.model.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -14,11 +14,11 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-public class FareCalculatorTest {
+public class TripFactoryTest {
 
     @ParameterizedTest
-    @MethodSource("calculateFareCases")
-    void calculateFareShouldCreateExpectedTrip(
+    @MethodSource("buildTripsCases")
+    void buildTripsShouldCreateExpectedTrip(
             TapPair tapPair,
             TripStatus expectedStatus,
             BigDecimal expectedFare,
@@ -27,8 +27,8 @@ public class FareCalculatorTest {
             String expectedDurationSecs
     ) {
 
-        FareCalculator fareCalculator = new FareCalculator();
-        List<Trip> result = fareCalculator.calculateFare(List.of(tapPair));
+        TripFactory tripFactory = new TripFactory();
+        List<Trip> result = tripFactory.buildTrips(List.of(tapPair));
 
         assertEquals(1, result.size());
 
@@ -40,7 +40,7 @@ public class FareCalculatorTest {
         assertEquals(expectedDurationSecs, trip.durationSecs());
     }
 
-    private static Stream<Arguments> calculateFareCases() {
+    private static Stream<Arguments> buildTripsCases() {
         return Stream.of(
                 arguments(
                         new TapPair(
@@ -94,7 +94,7 @@ public class FareCalculatorTest {
                         TripStatus.INCOMPLETE,
                         new BigDecimal("7.30"),
                         StopId.Stop1,
-                        StopId.Stop1,
+                        null,
                         "0"
                 ),
                 arguments(
@@ -105,7 +105,7 @@ public class FareCalculatorTest {
                         TripStatus.INCOMPLETE,
                         new BigDecimal("5.50"),
                         StopId.Stop2,
-                        StopId.Stop2,
+                        null,
                         "0"
                 ),
                 arguments(
@@ -116,7 +116,7 @@ public class FareCalculatorTest {
                         TripStatus.INCOMPLETE,
                         new BigDecimal("7.30"),
                         StopId.Stop3,
-                        StopId.Stop3,
+                        null,
                         "0"
                 )
         );

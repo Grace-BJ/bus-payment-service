@@ -11,13 +11,13 @@ public class BusPaymentService {
 
     private final TapCsvReader tapCsvReader = new TapCsvReader();
     private final TapMatcher tapMatcher = new TapMatcher();
-    private final FareCalculator fareCalculator = new FareCalculator();
+    private final TripFactory tripFactory = new TripFactory();
     private final TripCsvWriter tripCsvWriter = new TripCsvWriter();
 
     public void process(String inputPath, String outputPath) throws IOException {
         List<Tap> taps = tapCsvReader.readTaps(inputPath);
         List<TapPair> tapPairs = tapMatcher.matchTaps(taps);
-        List<Trip> trips = fareCalculator.calculateFare(tapPairs);
+        List<Trip> trips = tripFactory.buildTrips(tapPairs);
         tripCsvWriter.writeTrips(outputPath, trips);
     }
 }
