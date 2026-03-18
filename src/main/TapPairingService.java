@@ -16,9 +16,13 @@ public class TapPairingService {
         Map<AccountBusKey, List<Tap>> tapsByAccountAndBus = groupByAccountAndBus(taps);
 
         List<TapPair> pairs = new ArrayList<>();
-        for (List<Tap> group : tapsByAccountAndBus.values()) {
-            pairs.addAll(pairSingleAccountBus(group));
-        }
+        tapsByAccountAndBus.entrySet().stream()
+                // sort tap group order to ensure results are deterministic
+                .sorted(Comparator
+                        .comparing((Map.Entry<AccountBusKey, List<Tap>> e) -> e.getKey().accountId())
+                        .thenComparing(e -> e.getKey().busId()))
+                .forEach(entry -> pairs.addAll(pairSingleAccountBus(entry.getValue())));
+
         return pairs;
     }
 
@@ -29,7 +33,8 @@ public class TapPairingService {
 
     private List<TapPair> pairSingleAccountBus(List<Tap> group) {
         List<Tap> sorted = group.stream()
-                .sorted(Comparator.comparing(Tap::dateTime))
+                // order taps within each group to ensure results are deterministic
+                .sorted(Comparator.comparing(Tap::dateTime).thenComparing(Tap::id))
                 .toList();
 
         List<TapPair> pairs = new ArrayList<>();
